@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>투두리스트</h1>
+    <div>
+      <input type="text" id="todoInput" />
+      <button type="button" onClick="onClick()">추가</button>
+    </div>
+    <h2>목록</h2>
+    <ol id="todoList"></ol>
+  </body>
+
+  <script>
+    function onClick() {
+      // 1. input값 가져오기
+      const input = document.getElementById("todoInput");
+      const inputValue = input.value;
+
+      // 2. 기존 list 목록 가져오기
+      const todoList = document.getElementById("todoList");
+
+      // 3. input value를 li element에 넣기
+      const newListItem = document.createElement("li");
+      newListItem.textContent = inputValue;
+
+      // 4. 기존 list 목록에 새로운 value 추가
+      todoList.appendChild(newListItem);
+    }
+  </script>
+</html>
