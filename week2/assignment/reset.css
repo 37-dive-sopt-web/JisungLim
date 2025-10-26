@@ -44,11 +44,6 @@ textarea {
   outline: none;
 }
 
-ul,
-ol {
-  list-style: none;
-}
-
 button {
   cursor: pointer;
   user-select: none;
@@ -64,7 +59,10 @@ button:disabled {
   opacity: 0.5;
 }
 
-
+ul,
+ol {
+  list-style: none;
+}
 
 a {
   text-decoration: none;

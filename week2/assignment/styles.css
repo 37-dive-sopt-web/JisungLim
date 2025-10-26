@@ -138,5 +138,9 @@ select {
 
 .filter-button {
   flex: 1;
-  background-color: 
+  background-color: var(--bg-header);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 8px;
 }
