@@ -1,16 +1,21 @@
-.container {
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
+  gap: 40px;
+  background-color: #f1f1f1;
 }
+
+/* header section */
 
 .header {
   display: flex;
   padding: 30px 60px;
   align-items: center;
   background-color: #00bfff;
+  width: 100%;
 }
 
 .header-icon {
@@ -35,19 +40,42 @@
   font-weight: 600;
 }
 
-.filter-contaienr {
+/* filter section */
+
+.filter-container {
   display: flex;
   flex-direction: column;
+  width: 70%;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  gap: 16px;
 }
 
+.filter-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 더 나은 정렬방식 있을까? */
 .filter-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); // 각 row를 6칸으로 나눔(row를 케이스에 따라 1칸, 2칸, 3칸으로 나눠야 하므로)
+  grid-template-columns: repeat(
+    6,
+    1fr
+  ); /* 각 row를 6칸으로 나눔(row를 케이스에 따라 1칸, 2칸, 3칸으로 나눠야 하므로) */
   gap: 20px;
 }
 
 .filter-grid > :nth-child(1) {
-  grid-column: 1 / -1; // 첫번째 ~ 마지막 칸까지 하나
+  grid-column: 1 / -1; /* row의 첫번째 ~ 마지막 칸까지 하나 */
 }
 
 .filter-grid > :nth-child(2) {
@@ -57,10 +85,40 @@
 .filter-grid > :nth-child(3),
 .filter-grid > :nth-child(4),
 .filter-grid > :nth-child(5) {
-  grid-column: span 2; // 현재 위치에서 2칸씩 차지
+  grid-column: span 2; /* 현재 위치에서 2칸씩 차지 */
 }
 
 .filter-grid > :nth-child(6),
 .filter-grid > :nth-child(7) {
-  grid-column: span 3; // 현재 위치에서 3칸씩 차지
+  grid-column: span 3; /* 현재 위치에서 3칸씩 차지 */
+}
+
+.filter-item {
+  display: grid;
+  grid-template-columns: 5em 1fr; /* label은 5em(한글 4~5자), input은 나머지 */
+  /* 
+    1em: 현재 요소의 폰트 크기(기본 16px이므로 1em == 16px)
+    따라서 5em은 약 5글자정도 할당할 수 있는 너비
+    => 각 row마다 filter-name의 길이가 다른데, 모두 같은 너비를 가지도록 세팅 가능
+  */
+  gap: 16px;
+  align-items: center;
+}
+
+.filter-name {
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  font-weight: 500;
+}
+
+.filter-input,
+.filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+select {
+  cursor: pointer;
 }

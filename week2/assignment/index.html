@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <title>Document</title>
   </head>
-  <body class="container">
+  <body>
     <header class="header">
       <!-- 헤더 -->
       <span class="header-icon">🫡</span>
@@ -16,10 +16,76 @@
     </header>
     <div class="filter-container">
       <!-- 검색 필터 -->
-       <h2 class="filter-title">검색 필터</h2>
-       <div class="filter-grid">
-            
-       </div>
+      <h2 class="filter-title">검색 필터</h2>
+      <form action="" class="filter-form">
+        <div class="filter-grid">
+          <div class="filter-item">
+            <span class="filter-name">이름</span>
+            <input
+              type="text"
+              placeholder="이름을 입력하세요"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <span class="filter-name">영문이름</span>
+            <input
+              type="text"
+              placeholder="영문 이름을 입력하세요"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <span class="filter-name">깃허브</span>
+            <input
+              type="text"
+              placeholder="깃허브 아이디를 입력하세요"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <span class="filter-name">성별</span>
+            <select name="" id="" class="filter-select">
+              <option value="male">남자</option>
+              <option value="female">여자</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <span class="filter-name">역할</span>
+            <select name="" id="" class="filter-select">
+              <option value="OB">OB</option>
+              <option value="YB">YB</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <span class="filter-name">금잔디조</span>
+            <input
+              type="number"
+              placeholder="금잔디조를 입력하세요 (1~9)"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <span class="filter-name">나이</span>
+            <input
+              type="number"
+              placeholder="나이를 입력하세요"
+              class="filter-input"
+            />
+          </div>
+        </div>
+
+        <div class="filter-button-container">
+          <button type="submit" class="filter-button">적용</button>
+          <button type="reset" class="filter-button">초기화</button>
+        </div>
+      </form>
     </div>
     <div>
       <!-- 검색 결과 -->
