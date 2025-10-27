@@ -5,6 +5,7 @@ const tbody = document.querySelector(".table-body");
 // 페이지 로드 시 파트원 목록 리스트 렌더링
 refreshMemberList(membersData);
 
+// 검색 필터 적용, 초기화 버튼 로직
 const filterForm = document.querySelector(".filter-form");
 filterForm.addEventListener("submit", (event) => {
   event.preventDefault(); // 페이지 새로고침 방지
@@ -15,6 +16,7 @@ filterForm.addEventListener("reset", (event) => {
   refreshMemberList(membersData);
 });
 
+// 모달창 열기, 닫기 로직
 const addMemberBtn = document.querySelector(".list-add-button");
 const closeModalBtn = document.querySelector(".close-modal-button");
 const modal = document.querySelector(".modal");
@@ -31,6 +33,7 @@ modal.addEventListener("click", (e) => {
   }
 });
 
+// 검색 필터 적용
 function applyFilter() {
   // 1. 값이 존재하는 input 필드의 value 가져오기
   const selectedFilters = {
@@ -74,11 +77,11 @@ function applyFilter() {
     return true; // 모든 조건을 통과하면 포함
   });
 
-  // 3. 필터링된 리스트로 다시 목록 refresh
+  // 3. 필터링된 리스트로 파트원 목록 refresh
   refreshMemberList(filteredData);
 }
 
-// 테이블에 멤버 데이터를 렌더링하는 함수
+// 파트원 목록 테이블 refresh 함수
 function refreshMemberList(data) {
   // 기존 tbody 내용 비우기
   tbody.innerHTML = "";
