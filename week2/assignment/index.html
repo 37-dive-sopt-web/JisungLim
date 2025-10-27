@@ -19,6 +19,7 @@
       <h2 class="filter-title">검색 필터</h2>
       <form action="" class="filter-form">
         <div class="filter-grid">
+          <!-- TODO: span을 label 태그로 변경 -->
           <div class="filter-item">
             <span class="filter-name">이름</span>
             <input
@@ -113,7 +114,9 @@
         </colgroup>
         <thead>
           <tr class="table-header-row">
-            <th class="table-header"><input type="checkbox" name="" id="" /></th>
+            <th class="table-header">
+              <input type="checkbox" name="" id="" />
+            </th>
             <th class="table-header">이름</th>
             <th class="table-header">영문 이름</th>
             <th class="table-header">깃허브</th>
@@ -123,8 +126,83 @@
             <th class="table-header">나이</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody class="member-list-item"></tbody>
       </table>
+    </div>
+
+    <!-- 모달창 -->
+    <div class="modal-background">
+      <div class="modal-content">
+        <div class="modal-header-container">
+          <h2 class="modal-header">멤버 추가</h2>
+          <button type="button" class="close-modal-button">X</button>
+        </div>
+
+        <div class="modal-input-container">
+          <div class="modal-input-box">
+            <label for="" class="modal-input-label">이름</label>
+            <input
+              type="text"
+              class="modal-input"
+              placeholder="이름을 입력해주세요"
+            />
+          </div>
+          <div class="modal-input-box">
+            <label for="" class="modal-input-label">영문 이름</label>
+            <input
+              type="text"
+              class="modal-input"
+              placeholder="영문 이름을 입력해주세요"
+            />
+          </div>
+          <div class="modal-input-box">
+            <label for="" class="modal-input-label">깃허브 아이디</label>
+            <input
+              type="text"
+              class="modal-input"
+              placeholder="깃허브 아이디를 입력해주세요"
+            />
+          </div>
+          <div class="input-box-wrapper">
+            <div class="modal-input-box">
+              <label for="" class="modal-input-label">성별</label>
+              <select name="" id="" class="modal-select">
+                <option value="male">남자</option>
+                <option value="female">여자</option>
+              </select>
+            </div>
+            <div class="modal-input-box">
+              <label for="" class="modal-input-label">역할</label>
+              <select name="" id="" class="modal-select">
+                <option value="OB">OB</option>
+                <option value="YB">YB</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-box-wrapper">
+            <div class="modal-input-box">
+              <label for="" class="modal-input-label">금잔디조</label>
+              <input
+                type="text"
+                class="modal-input"
+                placeholder="금잔디조를 입력해주세요"
+              />
+            </div>
+            <div class="modal-input-box">
+              <label for="" class="modal-input-label">나이</label>
+              <input
+                type="text"
+                class="modal-input"
+                placeholder="나이를 입력해주세요"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-button-container">
+          <button type="button" class="modal-add-member-button">추가</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
