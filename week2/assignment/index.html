@@ -87,8 +87,44 @@
         </div>
       </form>
     </div>
-    <div>
-      <!-- 검색 결과 -->
+
+    <!-- 검색 결과 -->
+    <div class="member-list-container">
+      <h2 class="member-list-title">37기 웹 파트원 목록</h2>
+
+      <div class="list-modify-button-container">
+        <!-- 선택 삭제 / 추가 버튼 -->
+        <button type="button" class="list-modify-button">선택 삭제</button>
+        <button type="button" class="list-modify-button">추가</button>
+      </div>
+
+      <table class="table">
+        <colgroup>
+          <!-- colgroup에서 너비 설정은 inline style로 정의가 효율적일 듯함 -->
+          <!-- css 별도 분리 시 :nth-child로 코드가 복잡해짐 -->
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+          <col style="width: 20%" />
+          <col style="width: 20%" />
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+        </colgroup>
+        <thead>
+          <tr class="table-header-row">
+            <th class="table-header"><input type="checkbox" name="" id="" /></th>
+            <th class="table-header">이름</th>
+            <th class="table-header">영문 이름</th>
+            <th class="table-header">깃허브</th>
+            <th class="table-header">성별</th>
+            <th class="table-header">역할</th>
+            <th class="table-header">금잔디조</th>
+            <th class="table-header">나이</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </body>
 </html>
