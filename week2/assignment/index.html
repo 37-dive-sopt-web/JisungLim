@@ -19,63 +19,71 @@
       <h2 class="filter-title">검색 필터</h2>
       <form action="" class="filter-form">
         <div class="filter-grid">
-          <!-- TODO: span을 label 태그로 변경 -->
           <div class="filter-item">
-            <span class="filter-name">이름</span>
+            <label for="filter-name" class="filter-label">이름</label>
             <input
               type="text"
+              id="filter-name"
               placeholder="이름을 입력하세요"
               class="filter-input"
             />
           </div>
 
           <div class="filter-item">
-            <span class="filter-name">영문이름</span>
+            <label for="filter-english-name" class="filter-label">영문이름</label>
             <input
               type="text"
+              id="filter-english-name"
               placeholder="영문 이름을 입력하세요"
               class="filter-input"
             />
           </div>
 
           <div class="filter-item">
-            <span class="filter-name">깃허브</span>
+            <label for="filter-github" class="filter-label">깃허브</label>
             <input
               type="text"
+              id="filter-github"
               placeholder="깃허브 아이디를 입력하세요"
               class="filter-input"
             />
           </div>
 
           <div class="filter-item">
-            <span class="filter-name">성별</span>
-            <select name="" id="" class="filter-select">
+            <label for="filter-gender" class="filter-label">성별</label>
+            <select name="gender" id="filter-gender" class="filter-select">
+              <option value="">전체</option>
               <option value="male">남자</option>
               <option value="female">여자</option>
             </select>
           </div>
 
           <div class="filter-item">
-            <span class="filter-name">역할</span>
-            <select name="" id="" class="filter-select">
+            <label for="filter-role" class="filter-label">역할</label>
+            <select name="role" id="filter-role" class="filter-select">
+              <option value="">전체</option>
               <option value="OB">OB</option>
               <option value="YB">YB</option>
             </select>
           </div>
 
           <div class="filter-item">
-            <span class="filter-name">금잔디조</span>
+            <label for="filter-team" class="filter-label">금잔디조</label>
             <input
               type="number"
+              id="filter-team"
               placeholder="금잔디조를 입력하세요 (1~9)"
               class="filter-input"
+              min="1"
+              max="9"
             />
           </div>
 
           <div class="filter-item">
-            <span class="filter-name">나이</span>
+            <label for="filter-age" class="filter-label">나이</label>
             <input
               type="number"
+              id="filter-age"
               placeholder="나이를 입력하세요"
               class="filter-input"
             />

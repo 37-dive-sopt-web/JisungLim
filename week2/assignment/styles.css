@@ -114,7 +114,7 @@ body {
   align-items: center;
 }
 
-.filter-name {
+.filter-label {
   white-space: nowrap; /* 텍스트 줄바꿈 방지 */
   font-weight: 500;
 }
