@@ -15,6 +15,22 @@ filterForm.addEventListener("reset", (event) => {
   refreshMemberList(membersData);
 });
 
+const addMemberBtn = document.querySelector(".list-add-button");
+const closeModalBtn = document.querySelector(".close-modal-button");
+const modal = document.querySelector(".modal");
+
+addMemberBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+closeModalBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
 function applyFilter() {
   // 1. 값이 존재하는 input 필드의 value 가져오기
   const selectedFilters = {
