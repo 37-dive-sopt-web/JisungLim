@@ -197,7 +197,19 @@ select {
   border-bottom: 2px solid var(--border-color);
 }
 
-.member-list-item {
+.table-body {
+  padding: 12px;
+}
+
+.table-list-row {
+  /* padding: 12px; */
+}
+
+.table-list-data {
+  padding: 12px;
+  white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  text-overflow: ellipsis; /* 말줄임표 표시 */
 }
 
 /* 모달 */
@@ -209,7 +221,7 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* display: none; */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -223,7 +235,7 @@ select {
   flex-direction: column;
   padding: 24px;
   gap: 24px;
-  border-radius:8px;
+  border-radius: 8px;
 }
 
 .modal-header-container {
