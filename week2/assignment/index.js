@@ -18,31 +18,11 @@ filterForm.addEventListener("reset", (event) => {
 
 // 파트원 목록 삭제
 const deleteMemberBtn = document.querySelector(".list-delete-button");
-deleteMemberBtn.addEventListener("click", () => {
-  const checkedBoxesIds = [
-    ...document.querySelectorAll(".table-checkbox:checked"),
-  ].map((box) => Number(box.id)); // Number로 변환 꼭 필요...!
-
-  const filteredMember = membersData.filter(
-    (member) => !checkedBoxesIds.includes(member.id)
-  );
-
-  membersData = filteredMember
-  localStorage.setItem("membersData", JSON.stringify(membersData));
-  refreshMemberList(membersData);
-});
+deleteMemberBtn.addEventListener("click", deleteMember);
 
 // 체크박스 전체 선택, 해제 로직
 const headerCheckbox = document.querySelector(".table-header-checkbox");
-headerCheckbox.addEventListener("change", (event) => {
-  const isChecked = event.target.checked;
-  const checkBoxes = document.querySelectorAll(".table-checkbox");
-  if (isChecked) {
-    checkBoxes.forEach((box) => (box.checked = true));
-  } else {
-    checkBoxes.forEach((box) => (box.checked = false));
-  }
-});
+headerCheckbox.addEventListener("change", toggleAllCheckboxes);
 
 // 모달창
 const openModalBtn = document.querySelector(".list-add-button"); // 모달창 열기
