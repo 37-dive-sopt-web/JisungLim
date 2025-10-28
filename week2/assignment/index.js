@@ -27,16 +27,16 @@ deleteMemberBtn.addEventListener("click", () => {
     (member) => !checkedBoxesIds.includes(member.id)
   );
 
-  localStorage.setItem("membersData", JSON.stringify(filteredMember));
-
-  refreshMemberList(filteredMember);
+  membersData = filteredMember
+  localStorage.setItem("membersData", JSON.stringify(membersData));
+  refreshMemberList(membersData);
 });
 
 // 체크박스 전체 선택, 해제 로직
 const headerCheckbox = document.querySelector(".table-header-checkbox");
-const checkBoxes = document.querySelectorAll(".table-checkbox");
 headerCheckbox.addEventListener("change", (event) => {
   const isChecked = event.target.checked;
+  const checkBoxes = document.querySelectorAll(".table-checkbox");
   if (isChecked) {
     checkBoxes.forEach((box) => (box.checked = true));
   } else {
@@ -122,23 +122,23 @@ function refreshMemberList(data) {
 
     // 체크박스 td
     const checkboxTd = document.createElement("td");
-    checkboxTd.className = "table-list-data";
+    checkboxTd.classList.add("table-list-data");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.className = "table-checkbox";
+    checkbox.classList.add("table-checkbox");
     checkbox.id = member.id;
     checkboxTd.appendChild(checkbox);
     tr.appendChild(checkboxTd);
 
     // 이름 td
     const nameTd = document.createElement("td");
-    nameTd.className = "table-list-data";
+    nameTd.classList.add("table-list-data");
     nameTd.textContent = member.name;
     tr.appendChild(nameTd);
 
     // 영문 이름 td
     const englishNameTd = document.createElement("td");
-    englishNameTd.className = "table-list-data";
+    englishNameTd.classList.add("table-list-data");
     englishNameTd.textContent = member.englishName;
     tr.appendChild(englishNameTd);
 
@@ -148,33 +148,33 @@ function refreshMemberList(data) {
     githubUrl.href = `https://github.com/${member.github}`;
     githubUrl.target = "_blank";
     githubUrl.rel = "noopener noreferrer";
-    githubUrl.className = "githubUrl";
+    githubUrl.classList.add("githubUrl");
     githubUrl.textContent = member.github;
-    githubTd.className = "table-list-data";
+    githubTd.classList.add("table-list-data");
     githubTd.appendChild(githubUrl);
     tr.appendChild(githubTd);
 
     // 성별 td
     const genderTd = document.createElement("td");
-    genderTd.className = "table-list-data";
+    genderTd.classList.add("table-list-data");
     genderTd.textContent = member.gender === "male" ? "남자" : "여자";
     tr.appendChild(genderTd);
 
     // 역할 td
     const roleTd = document.createElement("td");
-    roleTd.className = "table-list-data";
+    roleTd.classList.add("table-list-data");
     roleTd.textContent = member.role;
     tr.appendChild(roleTd);
 
     // 금잔디조 td
     const teamTd = document.createElement("td");
-    teamTd.className = "table-list-data";
+    teamTd.classList.add("table-list-data");
     teamTd.textContent = member.codeReviewGroup;
     tr.appendChild(teamTd);
 
     // 나이 td
     const ageTd = document.createElement("td");
-    ageTd.className = "table-list-data";
+    ageTd.classList.add("table-list-data");
     ageTd.textContent = member.age;
     tr.appendChild(ageTd);
 
