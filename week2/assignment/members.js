@@ -281,6 +281,7 @@ const members = [
   },
 ];
 
-if (!localStorage.getItem("membersData")) {
+const storedData = JSON.parse(localStorage.getItem("membersData"));
+if (!storedData || storedData.length === 0) {
   localStorage.setItem("membersData", JSON.stringify(members));
 }

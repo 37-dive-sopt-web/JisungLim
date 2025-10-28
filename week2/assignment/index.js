@@ -31,10 +31,18 @@ deleteMemberBtn.addEventListener("click", () => {
 
   refreshMemberList(filteredMember);
 });
-const headerCheckbox = document.querySelector(".table-header-checkbox");
-headerCheckbox.addEventListener("change", () => {
 
-})
+// 체크박스 전체 선택, 해제 로직
+const headerCheckbox = document.querySelector(".table-header-checkbox");
+headerCheckbox.addEventListener("change", (event) => {
+  const isChecked = event.target.checked;
+  const checkBoxes = document.querySelectorAll(".table-checkbox");
+  if (isChecked) {
+    checkBoxes.forEach((box) => (box.checked = true));
+  } else {
+    checkBoxes.forEach((box) => (box.checked = false));
+  }
+});
 
 // 모달창
 const openModalBtn = document.querySelector(".list-add-button"); // 모달창 열기
