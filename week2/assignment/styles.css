@@ -212,6 +212,10 @@ select {
   text-overflow: ellipsis; /* 말줄임표 표시 */
 }
 
+.githubUrl {
+  color: var(--bg-header);
+}
+
 /* 모달 */
 
 .modal {

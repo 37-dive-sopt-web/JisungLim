@@ -34,9 +34,9 @@ deleteMemberBtn.addEventListener("click", () => {
 
 // 체크박스 전체 선택, 해제 로직
 const headerCheckbox = document.querySelector(".table-header-checkbox");
+const checkBoxes = document.querySelectorAll(".table-checkbox");
 headerCheckbox.addEventListener("change", (event) => {
   const isChecked = event.target.checked;
-  const checkBoxes = document.querySelectorAll(".table-checkbox");
   if (isChecked) {
     checkBoxes.forEach((box) => (box.checked = true));
   } else {
@@ -144,8 +144,14 @@ function refreshMemberList(data) {
 
     // 깃허브 td
     const githubTd = document.createElement("td");
+    const githubUrl = document.createElement("a");
+    githubUrl.href = `https://github.com/${member.github}`;
+    githubUrl.target = "_blank";
+    githubUrl.rel = "noopener noreferrer";
+    githubUrl.className = "githubUrl";
+    githubUrl.textContent = member.github;
     githubTd.className = "table-list-data";
-    githubTd.textContent = member.github;
+    githubTd.appendChild(githubUrl);
     tr.appendChild(githubTd);
 
     // 성별 td
