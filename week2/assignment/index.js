@@ -16,12 +16,33 @@ filterForm.addEventListener("reset", (event) => {
   refreshMemberList(membersData);
 });
 
-// 모달창 열기, 닫기 로직
-const addMemberBtn = document.querySelector(".list-add-button");
-const closeModalBtn = document.querySelector(".close-modal-button");
-const modal = document.querySelector(".modal");
+// 파트원 목록 삭제
+const deleteMemberBtn = document.querySelector(".list-delete-button");
+deleteMemberBtn.addEventListener("click", () => {
+  const checkedBoxesIds = [
+    ...document.querySelectorAll(".table-checkbox:checked"),
+  ].map((box) => Number(box.id)); // Number로 변환 꼭 필요...!
 
-addMemberBtn.addEventListener("click", () => {
+  const filteredMember = membersData.filter(
+    (member) => !checkedBoxesIds.includes(member.id)
+  );
+
+  localStorage.setItem("membersData", JSON.stringify(filteredMember));
+
+  refreshMemberList(filteredMember);
+});
+const headerCheckbox = document.querySelector(".table-header-checkbox");
+headerCheckbox.addEventListener("change", () => {
+
+})
+
+// 모달창
+const openModalBtn = document.querySelector(".list-add-button"); // 모달창 열기
+const closeModalBtn = document.querySelector(".close-modal-button"); // 모달창 닫기
+const modal = document.querySelector(".modal"); // 모달창 불투명 배경
+const addMemberBtn = document.querySelector(".modal-add-member-button"); // 모달창 '추가' 버튼
+
+openModalBtn.addEventListener("click", () => {
   modal.style.display = "flex";
 });
 closeModalBtn.addEventListener("click", () => {
@@ -32,6 +53,7 @@ modal.addEventListener("click", (e) => {
     modal.style.display = "none";
   }
 });
+addMemberBtn.addEventListener("click", addMember);
 
 // 검색 필터 적용
 function applyFilter() {
@@ -95,6 +117,8 @@ function refreshMemberList(data) {
     checkboxTd.className = "table-list-data";
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.className = "table-checkbox";
+    checkbox.id = member.id;
     checkboxTd.appendChild(checkbox);
     tr.appendChild(checkboxTd);
 
@@ -143,4 +167,41 @@ function refreshMemberList(data) {
     // tr을 tbody에 추가
     tbody.appendChild(tr);
   });
+}
+
+function addMember() {
+  const memberInfo = {
+    id: Date.now(),
+    name: document.getElementById("member-name").value,
+    englishName: document.getElementById("member-english-name").value,
+    github: document.getElementById("member-github").value,
+    gender: document.getElementById("member-gender").value,
+    role: document.getElementById("member-role").value,
+    codeReviewGroup: Number(document.getElementById("member-team").value),
+    age: Number(document.getElementById("member-age").value),
+  };
+
+  for (let info in memberInfo) {
+    if (info === "id") continue;
+
+    if (!memberInfo[info]) {
+      alert("모든 항목을 입력해주세요");
+      return;
+    }
+  }
+
+  // 기존 리스트에 추가 및 리렌더링
+  membersData.push(memberInfo);
+  refreshMemberList(membersData);
+
+  // localStorage에 저장
+  localStorage.setItem("membersData", JSON.stringify(membersData));
+
+  modal.style.display = "none";
+}
+
+function deleteMember() {
+  // 1. 선택된 체크박스 배열값 가져오기
+  // 2. 해당 item 찾아서 삭제될 때까지 반복문 돌기
+  // 3. 리스트 리렌더링
 }
