@@ -22,7 +22,11 @@ deleteMemberBtn.addEventListener("click", deleteMember);
 
 // 체크박스 전체 선택, 해제 로직
 const headerCheckbox = document.querySelector(".table-header-checkbox");
-headerCheckbox.addEventListener("change", toggleAllCheckboxes);
+headerCheckbox.addEventListener("change", (event) => {
+  const isChecked = event.target.checked;
+  const checkBoxes = document.querySelectorAll(".table-checkbox");
+  checkBoxes.forEach((box) => (box.checked = isChecked));
+});
 
 // 모달창
 const openModalBtn = document.querySelector(".list-add-button"); // 모달창 열기
@@ -195,7 +199,15 @@ function addMember() {
 }
 
 function deleteMember() {
-  // 1. 선택된 체크박스 배열값 가져오기
-  // 2. 해당 item 찾아서 삭제될 때까지 반복문 돌기
-  // 3. 리스트 리렌더링
+  const checkedBoxesIds = [
+    ...document.querySelectorAll(".table-checkbox:checked"),
+  ].map((box) => Number(box.id));
+
+  const filteredMember = membersData.filter(
+    (member) => !checkedBoxesIds.includes(member.id)
+  );
+
+  membersData = filteredMember;
+  localStorage.setItem("membersData", JSON.stringify(membersData));
+  refreshMemberList(membersData);
 }
