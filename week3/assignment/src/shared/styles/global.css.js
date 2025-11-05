@@ -6,6 +6,9 @@ globalStyle("body", {
   fontFamily:
     '"Pretendard Variable", Pretendard, -apple-system, "Helvetica Neue", Arial, sans-serif',
   backgroundColor: colors.gray900,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
 globalStyle("#root", {
