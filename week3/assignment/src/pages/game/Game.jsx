@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "./Game.css";
-import GameBoard from "./game-board/GameBoard";
-import GameInfo from "./game-info/GameInfo";
+import GameBoard from "./components/game-board/GameBoard";
+import GameInfo from "./components/game-info/GameInfo";
 
 const Game = () => {
   return (
