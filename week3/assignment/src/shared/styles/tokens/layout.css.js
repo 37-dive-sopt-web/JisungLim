@@ -12,10 +12,10 @@ export const layout = {
 
   // Border Radius
   borderRadius: {
-    sm: "4px",
-    md: "8px",
-    lg: "10px",
-    xl: "12px",
+    small: "4px",
+    medium: "8px",
+    large: "10px",
+    xlarge: "12px",
     full: "9999px",
   },
 };
