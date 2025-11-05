@@ -10,7 +10,7 @@ export const container = style({
   width: "1000px",
   padding: "24px",
   borderRadius: "10px",
-  backgroundColor: colors.gray500,
+  backgroundColor: colors.gray800,
   marginTop: "30px",
 });
 

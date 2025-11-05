@@ -3,7 +3,7 @@ import Header from '../../shared/components/header/Header'
 
 const Home = () => {
   return (
-    <div>
+    <div className=''>
       <Header />
     </div>
   )
