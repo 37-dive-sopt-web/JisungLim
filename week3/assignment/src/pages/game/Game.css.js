@@ -1,8 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { colors } from "../../styles/tokens/colors.css";
-import { typographyStyle } from "../../styles/tokens/typography.css";
-import { recipe } from "@vanilla-extract/recipes";
-import { layout } from "../../styles/tokens/layout.css";
+import { colors } from "../../shared/styles/tokens/colors.css";
+import { layout } from "../../shared/styles/tokens/layout.css";
 
 export const container = style({
   display: "flex",
@@ -10,6 +8,7 @@ export const container = style({
   padding: "24px",
   borderRadius: layout.borderRadius.large,
   backgroundColor: colors.gray800,
+  gap: '20px',
 });
 
 

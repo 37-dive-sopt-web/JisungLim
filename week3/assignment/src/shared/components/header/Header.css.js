@@ -32,9 +32,15 @@ export const button = recipe({
     ...typographyStyle("body_m_14"),
     textAlign: "center",
     borderRadius: layout.borderRadius.large,
+    transition: "all 0.2s",
 
-    ":active": {
+    ":hover": {
+      opacity: 0.9,
       transform: "scale(0.98)",
+    },
+  
+    ":active": {
+      transform: "scale(0.95)",
     },
   },
   variants: {
@@ -44,7 +50,7 @@ export const button = recipe({
         color: colors.gray000,
       },
       ranking: {
-        backgroundColor: colors.error,
+        backgroundColor: colors.primary,
         color: colors.gray000,
       },
     },
