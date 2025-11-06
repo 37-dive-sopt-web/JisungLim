@@ -1,6 +1,7 @@
 import React from "react";
 import * as styles from "./Header.css";
-import Button, { BUTTON_TYPES } from "../button/Button";
+import Button from "../button/Button";
+import { BUTTON_TYPES } from "../../constants/buttonTypes";
 
 const Header = ({ onSelectPage }) => {
   return (
@@ -10,7 +11,10 @@ const Header = ({ onSelectPage }) => {
         <Button type={BUTTON_TYPES.GAME} onClick={() => onSelectPage("Game")}>
           게임
         </Button>
-        <Button type={BUTTON_TYPES.RANKING} onClick={() => onSelectPage("Ranking")}>
+        <Button
+          type={BUTTON_TYPES.RANKING}
+          onClick={() => onSelectPage("Ranking")}
+        >
           랭킹
         </Button>
       </div>

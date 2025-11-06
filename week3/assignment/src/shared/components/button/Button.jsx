@@ -16,4 +16,3 @@ const Button = ({ type = BUTTON_TYPES.GAME, onClick, children, ...props }) => {
 };
 
 export default Button;
-export { BUTTON_TYPES };

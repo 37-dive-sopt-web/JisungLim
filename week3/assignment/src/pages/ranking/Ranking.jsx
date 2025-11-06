@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import * as styles from "./Ranking.css";
-import Button, { BUTTON_TYPES } from "../../shared/components/button/Button";
+import Button from "../../shared/components/button/Button";
 import {
   clearGameResults,
   getGameResults,
 } from "../../shared/utils/storageUtils";
+import { BUTTON_TYPES } from "../../shared/constants/buttonTypes";
 
 const Ranking = () => {
   const [rankings, setRankings] = useState([]);

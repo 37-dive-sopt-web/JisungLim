@@ -1,6 +1,7 @@
 import React from 'react'
 import * as styles from './GameBoard.css'
-import Button, { BUTTON_TYPES } from '../../../../shared/components/button/Button';
+import Button from '../../../../shared/components/button/Button';
+import { BUTTON_TYPES } from '../../../../shared/constants/buttonTypes';
 
 const GameBoard = ({
   deck,
