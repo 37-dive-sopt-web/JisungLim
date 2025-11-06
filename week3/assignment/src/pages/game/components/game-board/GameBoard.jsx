@@ -1,7 +1,21 @@
 import React from 'react'
 import * as styles from './GameBoard.css'
 
-const GameBoard = ({ deck, gridSize, resetDeck }) => {
+const GameBoard = ({
+  deck,
+  gridSize,
+  resetDeck,
+  flippedCards,
+  matchedCards,
+  onCardClick,
+}) => {
+  const isCardFlipped = (card) => {
+    return (
+      flippedCards.find((c) => c.id === card.id) ||
+      matchedCards.includes(card.id)
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -15,11 +29,20 @@ const GameBoard = ({ deck, gridSize, resetDeck }) => {
         className={styles.boardGrid}
         style={{ gridTemplateColumns: `repeat(${gridSize.cols}, 1fr)` }}
       >
-        {deck.map((card) => (
-          <div key={card.id} className={styles.card}>
-            ?
-          </div>
-        ))}
+        {deck.map((card) => {
+          const isFlipped = isCardFlipped(card);
+          const isMatched = matchedCards.includes(card.id);
+
+          return (
+            <div
+              key={card.id}
+              className={`${styles.card} ${isMatched ? styles.matched : ''}`}
+              onClick={() => onCardClick(card)}
+            >
+              {isFlipped ? card.value : '?'}
+            </div>
+          );
+        })}
       </div>
     </div>
   )

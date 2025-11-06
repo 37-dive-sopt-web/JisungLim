@@ -67,3 +67,13 @@ export const card = style({
     transform: "scale(0.95)",
   },
 });
+
+export const matched = style({
+  opacity: 0.6,
+  cursor: "not-allowed",
+
+  ":hover": {
+    transform: "none",
+    opacity: 0.6,
+  },
+});
