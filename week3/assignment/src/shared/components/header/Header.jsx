@@ -1,13 +1,14 @@
 import React from 'react'
 import * as styles from './Header.css'
+import Button from '../button/Button'
 
 const Header = () => {
   return (
     <header className={styles.container}>
       <h1 className={styles.title}>숫자 카드 짝 맞추기</h1>
       <div className={styles.buttonContainer}>
-        <button type="button" className={styles.button({ type: 'game' })}>게임</button>
-        <button type="button" className={styles.button({ type: 'ranking' })}>랭킹</button>
+        <Button type="game">게임</Button>
+        <Button type="ranking">랭킹</Button>
       </div>
     </header>
   )
