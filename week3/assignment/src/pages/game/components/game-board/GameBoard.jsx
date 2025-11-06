@@ -1,6 +1,6 @@
 import React from 'react'
 import * as styles from './GameBoard.css'
-import Button from '../../../../shared/components/button/Button';
+import Button, { BUTTON_TYPES } from '../../../../shared/components/button/Button';
 
 const GameBoard = ({
   deck,
@@ -21,7 +21,7 @@ const GameBoard = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.headerTitle}>게임 보드</h2>
-        <Button type="reset" onClick={resetDeck}>게임 리셋</Button>
+        <Button type={BUTTON_TYPES.RESET} onClick={resetDeck}>게임 리셋</Button>
       </div>
 
       <div

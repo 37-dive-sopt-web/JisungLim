@@ -1,7 +1,8 @@
 import React from "react";
 import * as styles from "./Button.css";
+import { BUTTON_TYPES } from "../../constants/buttonTypes";
 
-const Button = ({ type = "game", onClick, children, ...props }) => {
+const Button = ({ type = BUTTON_TYPES.GAME, onClick, children, ...props }) => {
   return (
     <button
       type="button"
@@ -15,3 +16,4 @@ const Button = ({ type = "game", onClick, children, ...props }) => {
 };
 
 export default Button;
+export { BUTTON_TYPES };

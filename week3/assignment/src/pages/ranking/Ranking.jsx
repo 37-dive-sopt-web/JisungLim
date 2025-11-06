@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as styles from "./Ranking.css";
-import Button from "../../shared/components/button/Button";
+import Button, { BUTTON_TYPES } from "../../shared/components/button/Button";
 import {
   clearGameResults,
   getGameResults,
@@ -27,7 +27,7 @@ const Ranking = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>랭킹 보드</h2>
-        <Button type="reset" onClick={handleClearRecords}>
+        <Button type={BUTTON_TYPES.RESET} onClick={handleClearRecords}>
           기록 초기화
         </Button>
       </div>
