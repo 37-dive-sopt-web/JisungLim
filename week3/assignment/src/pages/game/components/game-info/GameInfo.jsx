@@ -1,12 +1,91 @@
-import React from 'react'
-import * as styles from './GameInfo.css'
+import React from "react";
+import * as styles from "./GameInfo.css";
 
-const GameInfo = () => {
+const GameInfo = ({
+  level,
+  changeLevel,
+  isGameStarted,
+  timeLeft,
+  matchedCardsCount,
+  totalPairs,
+  history,
+  gameResult,
+}) => {
+  const getGameMessage = () => {
+    if (gameResult === "win") {
+      return "축하합니다!";
+    }
+    if (gameResult === "lose") {
+      return "시간이 초과되었습니다.";
+    }
+    if (!isGameStarted) {
+      return "카드를 뒤집어 게임을 시작하세요";
+    }
+    return "게임 진행 중입니다!";
+  };
+
   return (
     <div className={styles.container}>
-      
-    </div>
-  )
-}
+      <label className={styles.infoCategoryText}>
+        레벨
+        <select
+          id="level"
+          value={level}
+          onChange={(e) => changeLevel(Number(e.target.value))}
+          disabled={isGameStarted && !gameResult}
+          className={styles.levelInput}
+        >
+          <option value={1}>1단계</option>
+          <option value={2}>2단계</option>
+          <option value={3}>3단계</option>
+        </select>
+      </label>
 
-export default GameInfo
+      <div className={styles.gameStateBoxContainer}>
+        <div className={styles.gameStateBox}>
+          <span className={styles.gameStateTypeText}>남은 시간</span>
+          <span className={styles.gameStateValue}>{timeLeft.toFixed(2)}</span>
+        </div>
+        <div className={styles.gameStateBox}>
+          <span className={styles.gameStateTypeText}>성공한 짝</span>
+          <span className={styles.gameStateValue}>
+            {matchedCardsCount}/{totalPairs}
+          </span>
+        </div>
+        <div className={styles.gameStateBox}>
+          <span className={styles.gameStateTypeText}>남은 짝</span>
+          <span className={styles.gameStateValue}>
+            {totalPairs - matchedCardsCount}
+          </span>
+        </div>
+      </div>
+
+      <p className={styles.infoCategoryText}>안내 메시지</p>
+      <div className={styles.warningMessageBox}>{getGameMessage()}</div>
+
+      <p className={styles.infoCategoryText}>최근 히스토리</p>
+      <div className={styles.historyContainer}>
+        {history.length === 0 ? (
+          <p className={styles.noHistoryText}>아직 뒤집힌 카드가 없어요</p>
+        ) : (
+          history.map((item, index) => (
+            <div key={index} className={styles.historyBox}>
+              <span className={styles.historyCardId}>
+                {item.cards[0]}, {item.cards[1]}
+              </span>
+              <span
+                className={`${styles.historyResultText} ${
+                  item.isMatch ? styles.success : styles.fail
+                }`}
+              >
+                {item.isMatch ? "성공" : "실패"}
+              </span>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default GameInfo;
