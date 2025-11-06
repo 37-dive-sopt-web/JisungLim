@@ -8,10 +8,10 @@ export const container = style({
   justifyContent: "space-between",
   alignItems: "center",
   width: layout.containerWidth.large,
-  padding: "24px",
+  padding: "2.4rem",
   borderRadius: layout.borderRadius.large,
   backgroundColor: colors.gray800,
-  marginTop: "30px",
+  marginTop: "3rem",
 });
 
 export const title = style({
@@ -21,5 +21,5 @@ export const title = style({
 
 export const buttonContainer = style({
   display: "flex",
-  gap: "10px",
+  gap: "1rem",
 });

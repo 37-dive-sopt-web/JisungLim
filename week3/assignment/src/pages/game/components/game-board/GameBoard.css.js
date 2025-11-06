@@ -7,7 +7,7 @@ import { typographyStyle } from "../../../../shared/styles/tokens/typography.css
 export const container = style({
   display: "flex",
   flexDirection: "column",
-  gap: "16px",
+  gap: "1.6rem",
   flex: 65, // GameBoard와 GameInfo의 가로너비 비율이 65:35
 });
 
@@ -26,7 +26,7 @@ export const resetButton = style({
   ...typographyStyle("body_m_14"),
   backgroundColor: colors.error,
   color: colors.gray000,
-  padding: "4px 8px",
+  padding: "0.4rem 0.8rem",
   borderRadius: layout.borderRadius.full,
   transition: "all 0.2s",
 
@@ -42,7 +42,7 @@ export const resetButton = style({
 
 export const boardGrid = style({
   display: "grid",
-  gap: "12px",
+  gap: "1.2rem",
   width: "100%",
 });
 
@@ -54,7 +54,7 @@ export const card = recipe({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "48px",
+    fontSize: "4.8rem",
     fontWeight: 700,
     color: colors.gray000,
     cursor: "pointer",

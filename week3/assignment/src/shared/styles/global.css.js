@@ -1,6 +1,10 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { colors } from "./tokens/colors.css";
 
+globalStyle("html", {
+  fontSize: "62.5%",
+});
+
 globalStyle("body", {
   minWidth: "1280px",
   fontFamily:

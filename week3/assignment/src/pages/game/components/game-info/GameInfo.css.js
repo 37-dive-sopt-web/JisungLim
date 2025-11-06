@@ -10,7 +10,7 @@ export const container = style({
   flex: 35,
   backgroundColor: colors.gray700,
   borderRadius: layout.borderRadius.large,
-  padding: '24px',
+  padding: '2.4rem',
 });
 
 export const levelInput = style({
@@ -19,22 +19,22 @@ export const levelInput = style({
   color: colors.gray000,
   borderRadius: layout.borderRadius.xlarge,
   backgroundColor: colors.gray600,
-  padding: '6px',
-  marginTop: '4px',
+  padding: '0.6rem',
+  marginTop: '0.4rem',
 })
 
 export const gameStateBoxContainer = style({
   width: '100%',
   display: 'flex',
-  gap: '12px',
-  marginTop: '24px',
+  gap: '1.2rem',
+  marginTop: '2.4rem',
 })
 
 export const gameStateBox = style({
   display: 'flex',
   flexDirection: 'column',
-  padding: '12px',
-  gap: '2px',
+  padding: '1.2rem',
+  gap: '0.2rem',
   borderRadius: layout.borderRadius.xlarge,
   backgroundColor: colors.gray600,
   flex: 1,
@@ -54,25 +54,25 @@ export const gameStateValue = style({
 export const infoCategoryText = style({
   ...typographyStyle('title_sb_16'),
   color: colors.gray000,
-  marginTop: '24px',
+  marginTop: '2.4rem',
 })
 
 export const warningMessageBox = style({
   width: '100%',
-  padding: '24px 12px',
+  padding: '2.4rem 1.2rem',
   borderRadius: layout.borderRadius.xlarge,
   backgroundColor: colors.gray600,
   color: colors.gray000,
   ...typographyStyle('title_r_16'),
-  marginTop: '8px',
+  marginTop: '0.8rem',
 })
 
 export const historyContainer = style({
   width: '100%',
-  marginTop: '8px',
+  marginTop: '0.8rem',
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
+  gap: '0.8rem',
   // maxHeight: '300px',
   overflowY: 'auto',
 })
@@ -80,7 +80,7 @@ export const historyContainer = style({
 export const noHistoryText = style({
   ...typographyStyle('body_r_14'),
   color: colors.gray400,
-  padding: '24px',
+  padding: '2.4rem',
   height: '160px',
   display: 'flex',
   alignItems: 'center',
@@ -89,7 +89,7 @@ export const noHistoryText = style({
 
 export const historyBox = style({
   width: '100%',
-  padding: '12px',
+  padding: '1.2rem',
   borderRadius: layout.borderRadius.medium,
   backgroundColor: colors.gray600,
   display: 'flex',

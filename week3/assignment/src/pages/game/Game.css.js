@@ -6,10 +6,10 @@ export const container = style({
   display: "flex",
   width: layout.containerWidth.large,
   height: '700px',
-  padding: "24px",
+  padding: "2.4rem",
   borderRadius: layout.borderRadius.large,
   backgroundColor: colors.gray800,
-  gap: '20px',
+  gap: '2rem',
 });
 
 

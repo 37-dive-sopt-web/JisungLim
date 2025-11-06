@@ -9,14 +9,14 @@ export const container = style({
   flexDirection: "column",
   backgroundColor: colors.gray700,
   borderRadius: layout.borderRadius.large,
-  padding: "24px",
+  padding: "2.4rem",
 });
 
 export const header = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginBottom: "24px",
+  marginBottom: "2.4rem",
 });
 
 export const title = style({
@@ -36,7 +36,7 @@ export const tableHeader = style({
 export const tableHeaderCell = style({
   ...typographyStyle("title_sb_16"),
   color: colors.gray000,
-  padding: "16px",
+  padding: "1.6rem",
   textAlign: "center",
   borderBottom: `1px solid ${colors.gray500}`,
 });
@@ -51,7 +51,7 @@ export const tableRow = style({
 export const tableCell = style({
   ...typographyStyle("body_r_14"),
   color: colors.gray000,
-  padding: "16px",
+  padding: "1.6rem",
   textAlign: "center",
   borderBottom: `1px solid ${colors.gray600}`,
 });
@@ -59,6 +59,6 @@ export const tableCell = style({
 export const noData = style({
   ...typographyStyle("body_r_14"),
   color: colors.gray400,
-  padding: "48px",
+  padding: "4.8rem",
   textAlign: "center",
 });
