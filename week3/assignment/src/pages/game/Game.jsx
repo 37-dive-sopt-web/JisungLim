@@ -16,6 +16,7 @@ const Game = () => {
     totalPairs,
     history,
     gameResult,
+    gameMessage,
     handleCardClick,
     handleReset,
   } = useGameLogic(deck, resetDeck);
@@ -39,6 +40,7 @@ const Game = () => {
         totalPairs={totalPairs}
         history={history}
         gameResult={gameResult}
+        gameMessage={gameMessage}
       />
     </main>
   );

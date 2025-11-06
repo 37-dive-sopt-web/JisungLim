@@ -6,6 +6,8 @@ import {
   GAME_RESET_DELAY,
   MAX_FLIPPED_CARDS,
   GAME_RESULT,
+  GAME_MESSAGES,
+  WARNING_MESSAGE_TIME,
 } from "../constants/GameConstants";
 
 export const useGameLogic = (deck, resetDeck) => {
@@ -19,32 +21,29 @@ export const useGameLogic = (deck, resetDeck) => {
   const [matchedCardsCount, setMatchedCardsCount] = useState(0); // 현재까지 매치된 카드 쌍의 개수
   const [history, setHistory] = useState([]); // { cards: [value1, value2], isMatch: boolean }
 
-  // 게임 종료 상태
-  const [gameResult, setGameResult] = useState(null); // 'win' | 'lose' | null
-
-  // 카드 비교 중 상태 (추가 클릭 방지)
+  const [gameResult, setGameResult] = useState(GAME_RESULT.NOT_STARTED);
   const isComparing = useRef(false);
-
-  // 총 카드 pair 개수
   const totalPairs = deck.length / 2;
+
+  const [warningMessage, setWarningMessage] = useState("");
 
   // 타이머
   useEffect(() => {
-    // 게임이 시작되지 않았거나, 끝나서 결과가 나왔다면 return
-    if (!isGameStarted || gameResult) return;
+    // 게임 진행 중일 때만 타이머 동작
+    if (gameResult !== GAME_RESULT.IN_PROGRESS) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) {
+        if (prev <= 0.1) {
           setGameResult(GAME_RESULT.LOSE);
           return 0;
         }
-        return prev - 1;
+        return prev - 0.1;
       });
     }, TIMER_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [isGameStarted, gameResult]);
+  }, [gameResult]);
 
   // 승리 체크
   useEffect(() => {
@@ -55,7 +54,7 @@ export const useGameLogic = (deck, resetDeck) => {
 
   // 게임 종료 시 3초 후 초기화
   useEffect(() => {
-    if (gameResult) {
+    if (gameResult === GAME_RESULT.WIN || gameResult === GAME_RESULT.LOSE) {
       const timeout = setTimeout(() => {
         handleReset();
       }, GAME_RESET_DELAY);
@@ -63,22 +62,34 @@ export const useGameLogic = (deck, resetDeck) => {
     }
   }, [gameResult]);
 
+  // 게임 상태에 따른 메시지 가져오기
+  const getGameMessage = () => {
+    if (gameResult === GAME_RESULT.WIN) return GAME_MESSAGES.WIN;
+    if (gameResult === GAME_RESULT.LOSE) return GAME_MESSAGES.LOSE;
+    if (gameResult === GAME_RESULT.IN_PROGRESS)
+      return GAME_MESSAGES.IN_PROGRESS;
+    return GAME_MESSAGES.NOT_STARTED;
+  };
+
   // 카드 클릭 핸들러
   const handleCardClick = (card) => {
+    if (gameResult === GAME_RESULT.WIN || gameResult === GAME_RESULT.LOSE)
+      return; // 게임 종료 상태 체크
+    if (flippedCards.find((c) => c.id === card.id)) {
+      setWarningMessage(GAME_MESSAGES.ALREADY_FLIPPED);
+      setTimeout(() => {
+        setWarningMessage("");
+      }, WARNING_MESSAGE_TIME);
+      return; // 이미 뒤집힌 카드 체크
+    }
+    if (matchedCards.includes(card.id)) return; // 이미 매치된 카드 체크
+    if (isComparing.current) return; // 카드 비교 중 체크
+    if (flippedCards.length >= MAX_FLIPPED_CARDS) return; // 2장 이미 뒤집힌 상태 체크
+
     // 게임 시작 전이면 클릭한 순간부터 게임 시작
     if (!isGameStarted) {
       setIsGameStarted(true);
-    }
-
-    // 카드 클릭 불가 조건 세팅
-    if (
-      isComparing.current || // 카드 비교 중이면 다른 카드 클릭 무시
-      flippedCards.length >= MAX_FLIPPED_CARDS || // 이미 2장 뒤집힘
-      flippedCards.find((c) => c.id === card.id) || // 이미 뒤집힌 카드
-      matchedCards.includes(card.id) || // 이미 매치된 카드
-      gameResult // 게임 종료
-    ) {
-      return;
+      setGameResult(GAME_RESULT.IN_PROGRESS);
     }
 
     const newFlipped = [...flippedCards, card];
@@ -122,10 +133,12 @@ export const useGameLogic = (deck, resetDeck) => {
     setTimeLeft(INITIAL_TIME_LIMIT);
     setMatchedCardsCount(0);
     setHistory([]);
-    setGameResult(null);
+    setGameResult(GAME_RESULT.NOT_STARTED);
     isComparing.current = false;
     resetDeck();
   };
+
+  const gameMessage = warningMessage || getGameMessage();
 
   return {
     flippedCards,
@@ -136,6 +149,7 @@ export const useGameLogic = (deck, resetDeck) => {
     totalPairs,
     history,
     gameResult,
+    gameMessage,
     handleCardClick,
     handleReset,
   };

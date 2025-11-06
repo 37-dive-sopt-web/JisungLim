@@ -10,19 +10,8 @@ const GameInfo = ({
   totalPairs,
   history,
   gameResult,
+  gameMessage,
 }) => {
-  const getGameMessage = () => {
-    if (gameResult === "win") {
-      return "축하합니다!";
-    }
-    if (gameResult === "lose") {
-      return "시간이 초과되었습니다.";
-    }
-    if (!isGameStarted) {
-      return "카드를 뒤집어 게임을 시작하세요";
-    }
-    return "게임 진행 중입니다!";
-  };
 
   return (
     <div className={styles.container}>
@@ -61,7 +50,7 @@ const GameInfo = ({
       </div>
 
       <p className={styles.infoCategoryText}>안내 메시지</p>
-      <div className={styles.warningMessageBox}>{getGameMessage()}</div>
+      <div className={styles.warningMessageBox}>{gameMessage}</div>
 
       <p className={styles.infoCategoryText}>최근 히스토리</p>
       <div className={styles.historyContainer}>
