@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  INITIAL_TIME_LIMIT,
   TIMER_INTERVAL,
   CARD_FLIP_DELAY,
   GAME_RESET_DELAY,
@@ -11,14 +10,14 @@ import {
 } from "../constants/GameConstants";
 import { saveGameResult } from "../../../shared/utils/storageUtils";
 
-export const useGameLogic = (deck, resetDeck, level) => {
+export const useGameLogic = (deck, resetDeck, level, timeLimit) => {
   // 카드 상태
   const [flippedCards, setFlippedCards] = useState([]); // 현재 뒤집힌 카드 정보 저장(최대 2장), [{ id: "3-a", value: 3}, ...]
   const [matchedCards, setMatchedCards] = useState([]); // 이미 매치된 카드의 ID만 저장, ["1-a", "1-b", ...]
 
   // 게임 상태
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME_LIMIT);
+  const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [matchedCardsCount, setMatchedCardsCount] = useState(0); // 현재까지 매치된 카드 쌍의 개수
   const [history, setHistory] = useState([]); // { cards: [value1, value2], isMatch: boolean }
 
@@ -27,6 +26,18 @@ export const useGameLogic = (deck, resetDeck, level) => {
   const totalPairs = deck.length / 2;
 
   const [warningMessage, setWarningMessage] = useState("");
+
+  // 레벨 변경 시 timeLeft 초기화
+  useEffect(() => {
+    setTimeLeft(timeLimit);
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setIsGameStarted(false);
+    setMatchedCardsCount(0);
+    setHistory([]);
+    setGameResult(GAME_RESULT.NOT_STARTED);
+    isComparing.current = false;
+  }, [timeLimit]);
 
   // 타이머
   useEffect(() => {
@@ -60,7 +71,7 @@ export const useGameLogic = (deck, resetDeck, level) => {
       if (gameResult === GAME_RESULT.WIN) {
         const result = {
           level: `Level ${level}`,
-          clearTime: (INITIAL_TIME_LIMIT - timeLeft).toFixed(2),
+          clearTime: (timeLimit - timeLeft).toFixed(2),
           recordedAt: new Date().toLocaleString('ko-KR'),
         };
         saveGameResult(result);
@@ -141,7 +152,7 @@ export const useGameLogic = (deck, resetDeck, level) => {
     setFlippedCards([]);
     setMatchedCards([]);
     setIsGameStarted(false);
-    setTimeLeft(INITIAL_TIME_LIMIT);
+    setTimeLeft(timeLimit);
     setMatchedCardsCount(0);
     setHistory([]);
     setGameResult(GAME_RESULT.NOT_STARTED);

@@ -6,7 +6,7 @@ import { useShuffle } from "./hooks/useShuffle";
 import { useGameLogic } from "./hooks/useGameLogic";
 
 const Game = () => {
-  const { deck, level, gridSize, resetDeck, changeLevel } = useShuffle(1);
+  const { deck, level, gridSize, timeLimit, resetDeck, changeLevel } = useShuffle(1);
   const {
     flippedCards,
     matchedCards,
@@ -19,7 +19,7 @@ const Game = () => {
     gameMessage,
     handleCardClick,
     handleReset,
-  } = useGameLogic(deck, resetDeck, level);
+  } = useGameLogic(deck, resetDeck, level, timeLimit);
 
   return (
     <main className={styles.container}>

@@ -1,5 +1,6 @@
 import React from "react";
 import * as styles from "./GameInfo.css";
+import { LEVEL_CONFIG } from "../../../../shared/constants/levelConfig";
 
 const GameInfo = ({
   level,
@@ -12,7 +13,6 @@ const GameInfo = ({
   gameResult,
   gameMessage,
 }) => {
-
   return (
     <div className={styles.container}>
       <label className={styles.infoCategoryText}>
@@ -24,9 +24,11 @@ const GameInfo = ({
           disabled={isGameStarted && !gameResult}
           className={styles.levelInput}
         >
-          <option value={1}>1단계</option>
-          <option value={2}>2단계</option>
-          <option value={3}>3단계</option>
+          {Object.entries(LEVEL_CONFIG).map(([key, config]) => (
+            <option key={key} value={key}>
+              {config.label}
+            </option>
+          ))}
         </select>
       </label>
 
