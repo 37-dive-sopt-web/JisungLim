@@ -19,7 +19,7 @@ const Game = () => {
     gameMessage,
     handleCardClick,
     handleReset,
-  } = useGameLogic(deck, resetDeck);
+  } = useGameLogic(deck, resetDeck, level);
 
   return (
     <main className={styles.container}>

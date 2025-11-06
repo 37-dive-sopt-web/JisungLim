@@ -9,8 +9,9 @@ import {
   GAME_MESSAGES,
   WARNING_MESSAGE_TIME,
 } from "../constants/GameConstants";
+import { saveGameResult } from "../../../shared/utils/storageUtils";
 
-export const useGameLogic = (deck, resetDeck) => {
+export const useGameLogic = (deck, resetDeck, level) => {
   // 카드 상태
   const [flippedCards, setFlippedCards] = useState([]); // 현재 뒤집힌 카드 정보 저장(최대 2장), [{ id: "3-a", value: 3}, ...]
   const [matchedCards, setMatchedCards] = useState([]); // 이미 매치된 카드의 ID만 저장, ["1-a", "1-b", ...]
@@ -55,12 +56,22 @@ export const useGameLogic = (deck, resetDeck) => {
   // 게임 종료 시 3초 후 초기화
   useEffect(() => {
     if (gameResult === GAME_RESULT.WIN || gameResult === GAME_RESULT.LOSE) {
+      // WIN일 때만 localStorage에 저장
+      if (gameResult === GAME_RESULT.WIN) {
+        const result = {
+          level: `Level ${level}`,
+          clearTime: (INITIAL_TIME_LIMIT - timeLeft).toFixed(2),
+          recordedAt: new Date().toLocaleString('ko-KR'),
+        };
+        saveGameResult(result);
+      }
+
       const timeout = setTimeout(() => {
         handleReset();
       }, GAME_RESET_DELAY);
       return () => clearTimeout(timeout);
     }
-  }, [gameResult]);
+  }, [gameResult, level, timeLeft]);
 
   // 게임 상태에 따른 메시지 가져오기
   const getGameMessage = () => {
