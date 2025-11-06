@@ -11,9 +11,14 @@ const Ranking = () => {
   const [rankings, setRankings] = useState([]);
 
   useEffect(() => {
-    // localStorage에서 데이터 불러오기 및 정렬 (클리어 시간 오름차순)
+    // localStorage에서 데이터 불러오기 및 정렬
     const data = getGameResults();
-    const sortedData = data.sort((a, b) => parseFloat(a.clearTime) - parseFloat(b.clearTime));
+    const sortedData = data.sort((a, b) => {
+      if (a.level !== b.level) {
+        return b.level - a.level; // 레벨 내림차순
+      }
+      return parseFloat(a.clearTime) - parseFloat(b.clearTime); // 클리어 시간 오름차순
+    });
     setRankings(sortedData);
   }, []);
 

@@ -70,7 +70,7 @@ export const useGameLogic = (deck, resetDeck, level, timeLimit) => {
       // WIN일 때만 localStorage에 저장
       if (gameResult === GAME_RESULT.WIN) {
         const result = {
-          level: `Level ${level}`,
+          level: level,
           clearTime: (timeLimit - timeLeft).toFixed(2),
           recordedAt: new Date().toLocaleString('ko-KR'),
         };
