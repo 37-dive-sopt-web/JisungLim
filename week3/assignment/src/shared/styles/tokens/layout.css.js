@@ -6,8 +6,8 @@
 export const layout = {
   // Container Widths
   containerWidth: {
-    large: "1000px",
-    xlarge: "1280px",
+    large: "100rem",
+    xlarge: "128rem",
   },
 
   // Border Radius

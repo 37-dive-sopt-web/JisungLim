@@ -6,7 +6,7 @@ globalStyle("html", {
 });
 
 globalStyle("body", {
-  minWidth: "1280px",
+  minWidth: "128rem",
   fontFamily:
     '"Pretendard Variable", Pretendard, -apple-system, "Helvetica Neue", Arial, sans-serif',
   backgroundColor: colors.gray900,

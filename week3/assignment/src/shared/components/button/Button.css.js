@@ -6,7 +6,7 @@ import { layout } from "../../styles/tokens/layout.css";
 export const button = recipe({
   base: {
     display: "flex",
-    padding: "8px 12px",
+    padding: "0.8rem 1.2rem",
     ...typographyStyle("body_m_14"),
     textAlign: "center",
     borderRadius: layout.borderRadius.large,

@@ -73,7 +73,6 @@ export const historyContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
-  // maxHeight: '300px',
   overflowY: 'auto',
 })
 
@@ -81,7 +80,7 @@ export const noHistoryText = style({
   ...typographyStyle('body_r_14'),
   color: colors.gray400,
   padding: '2.4rem',
-  height: '160px',
+  height: '16rem',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
