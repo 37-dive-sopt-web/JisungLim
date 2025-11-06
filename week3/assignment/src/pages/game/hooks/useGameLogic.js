@@ -1,4 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import {
+  INITIAL_TIME_LIMIT,
+  TIMER_INTERVAL,
+  CARD_FLIP_DELAY,
+  GAME_RESET_DELAY,
+  MAX_FLIPPED_CARDS,
+  GAME_RESULT,
+} from "../constants/GameConstants";
 
 export const useGameLogic = (deck, resetDeck) => {
   // 카드 상태
@@ -7,7 +15,7 @@ export const useGameLogic = (deck, resetDeck) => {
 
   // 게임 상태
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(45);
+  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME_LIMIT);
   const [matchedCardsCount, setMatchedCardsCount] = useState(0); // 현재까지 매치된 카드 쌍의 개수
   const [history, setHistory] = useState([]); // { cards: [value1, value2], isMatch: boolean }
 
@@ -28,12 +36,12 @@ export const useGameLogic = (deck, resetDeck) => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          setGameResult("lose");
+          setGameResult(GAME_RESULT.LOSE);
           return 0;
         }
         return prev - 1;
       });
-    }, 1000);
+    }, TIMER_INTERVAL);
 
     return () => clearInterval(timer);
   }, [isGameStarted, gameResult]);
@@ -41,7 +49,7 @@ export const useGameLogic = (deck, resetDeck) => {
   // 승리 체크
   useEffect(() => {
     if (matchedCardsCount === totalPairs) {
-      setGameResult("win");
+      setGameResult(GAME_RESULT.WIN);
     }
   }, [matchedCardsCount, totalPairs]);
 
@@ -50,7 +58,7 @@ export const useGameLogic = (deck, resetDeck) => {
     if (gameResult) {
       const timeout = setTimeout(() => {
         handleReset();
-      }, 3000);
+      }, GAME_RESET_DELAY);
       return () => clearTimeout(timeout);
     }
   }, [gameResult]);
@@ -65,7 +73,7 @@ export const useGameLogic = (deck, resetDeck) => {
     // 카드 클릭 불가 조건 세팅
     if (
       isComparing.current || // 카드 비교 중이면 다른 카드 클릭 무시
-      flippedCards.length >= 2 || // 이미 2장 뒤집힘
+      flippedCards.length >= MAX_FLIPPED_CARDS || // 이미 2장 뒤집힘
       flippedCards.find((c) => c.id === card.id) || // 이미 뒤집힌 카드
       matchedCards.includes(card.id) || // 이미 매치된 카드
       gameResult // 게임 종료
@@ -77,7 +85,7 @@ export const useGameLogic = (deck, resetDeck) => {
     setFlippedCards(newFlipped);
 
     // 두 장째 카드 뒤집었을 때
-    if (newFlipped.length === 2) {
+    if (newFlipped.length === MAX_FLIPPED_CARDS) {
       isComparing.current = true; // 다른 카드 클릭 시 handleCardClick 이벤트 return
       const [first, second] = newFlipped;
 
@@ -93,7 +101,7 @@ export const useGameLogic = (deck, resetDeck) => {
         setFlippedCards([]);
         isComparing.current = false; // 다른 카드 클릭 무시 해제
       } else {
-        // 매치 실패 시 700ms 후 뒤집기
+        // 매치 실패 시 일정 시간 후 뒤집기
         setTimeout(() => {
           setHistory((prev) => [
             { cards: [first.value, second.value], isMatch: false },
@@ -101,7 +109,7 @@ export const useGameLogic = (deck, resetDeck) => {
           ]);
           setFlippedCards([]);
           isComparing.current = false; // 700ms동안은 다른 카드 클릭 시에도 이벤트 발생 X, 700ms 후 해제
-        }, 700);
+        }, CARD_FLIP_DELAY);
       }
     }
   };
@@ -111,7 +119,7 @@ export const useGameLogic = (deck, resetDeck) => {
     setFlippedCards([]);
     setMatchedCards([]);
     setIsGameStarted(false);
-    setTimeLeft(45);
+    setTimeLeft(INITIAL_TIME_LIMIT);
     setMatchedCardsCount(0);
     setHistory([]);
     setGameResult(null);
