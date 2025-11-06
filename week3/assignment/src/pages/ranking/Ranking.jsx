@@ -7,11 +7,11 @@ const Ranking = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>랭킹 보드</h2>
-        <Button type="reset" onClick={handleClearRecords}>
+        {/* <Button type="reset" onClick={handleClearRecords}>
           기록 초기화
-        </Button>
+        </Button> */}
       </div>
-
+{/* 
       {rankings.length === 0 ? (
         <div className={styles.noData}>아직 기록이 없습니다</div>
       ) : (
@@ -35,7 +35,7 @@ const Ranking = () => {
             ))}
           </tbody>
         </table>
-      )}
+      )} */}
     </div>
   );
 };
