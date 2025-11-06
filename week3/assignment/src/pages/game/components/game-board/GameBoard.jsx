@@ -36,7 +36,7 @@ const GameBoard = ({
           return (
             <div
               key={card.id}
-              className={`${styles.card} ${isMatched ? styles.matched : ''}`}
+              className={styles.card({ matched: isMatched })}
               onClick={() => onCardClick(card)}
             >
               {isFlipped ? card.value : '?'}

@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 import { colors } from "../../../../shared/styles/tokens/colors.css";
 import { layout } from "../../../../shared/styles/tokens/layout.css";
 import { typographyStyle } from "../../../../shared/styles/tokens/typography.css";
@@ -45,35 +46,40 @@ export const boardGrid = style({
   width: "100%",
 });
 
-export const card = style({
-  aspectRatio: "1 / 1",
-  backgroundColor: colors.green,
-  borderRadius: layout.borderRadius.xlarge,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "48px",
-  fontWeight: 700,
-  color: colors.gray000,
-  cursor: "pointer",
-  transition: "all 0.2s",
+export const card = recipe({
+  base: {
+    aspectRatio: "1 / 1",
+    backgroundColor: colors.green,
+    borderRadius: layout.borderRadius.xlarge,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "48px",
+    fontWeight: 700,
+    color: colors.gray000,
+    cursor: "pointer",
+    transition: "all 0.2s",
 
-  ":hover": {
-    opacity: 0.9,
-    transform: "scale(0.98)",
+    ":hover": {
+      opacity: 0.9,
+      transform: "scale(0.98)",
+    },
+
+    ":active": {
+      transform: "scale(0.95)",
+    },
   },
+  variants: {
+    matched: {
+      true: {
+        opacity: 0.6,
+        cursor: "not-allowed",
 
-  ":active": {
-    transform: "scale(0.95)",
-  },
-});
-
-export const matched = style({
-  opacity: 0.6,
-  cursor: "not-allowed",
-
-  ":hover": {
-    transform: "none",
-    opacity: 0.6,
+        ":hover": {
+          transform: "none",
+          opacity: 0.6,
+        },
+      },
+    },
   },
 });
