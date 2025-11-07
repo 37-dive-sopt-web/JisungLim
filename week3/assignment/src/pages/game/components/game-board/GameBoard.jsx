@@ -11,13 +11,6 @@ const GameBoard = ({
   matchedCards,
   onCardClick,
 }) => {
-  const isCardFlipped = (card) => {
-    return (
-      flippedCards.find((c) => c.id === card.id) ||
-      matchedCards.includes(card.id)
-    );
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -30,16 +23,19 @@ const GameBoard = ({
         style={{ gridTemplateColumns: `repeat(${gridSize.cols}, 1fr)` }}
       >
         {deck.map((card) => {
-          const isFlipped = isCardFlipped(card);
+          const isSelected = flippedCards.some((c) => c.id === card.id);
           const isMatched = matchedCards.includes(card.id);
+          const isFlipped = isSelected || isMatched;
 
           return (
             <div
               key={card.id}
-              className={styles.card({ matched: isMatched })}
+              className={styles.cardWrapper({ flipped: isFlipped, matched: isMatched })}
               onClick={() => onCardClick(card)}
             >
-              {isFlipped ? card.value : '?'}
+              <span className={styles.cardText({ flipped: isFlipped })}>
+                {isFlipped ? card.value : '?'}
+              </span>
             </div>
           );
         })}
