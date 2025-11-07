@@ -1,0 +1,89 @@
+import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
+import { colors } from "../../../../shared/styles/tokens/colors.css";
+import { layout } from "../../../../shared/styles/tokens/layout.css";
+import { typographyStyle } from "../../../../shared/styles/tokens/typography.css";
+
+export const container = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "1.6rem",
+  flex: 65,
+});
+
+export const header = style({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
+
+export const headerTitle = style({
+  ...typographyStyle("title_sb_16"),
+  color: colors.gray000,
+});
+
+export const resetButton = style({
+  ...typographyStyle("body_m_14"),
+  backgroundColor: colors.error,
+  color: colors.gray000,
+  padding: "0.4rem 0.8rem",
+  borderRadius: layout.borderRadius.full,
+  transition: "all 0.2s",
+
+  ":hover": {
+    opacity: 0.9,
+    transform: "scale(0.98)",
+  },
+
+  ":active": {
+    transform: "scale(0.95)",
+  },
+});
+
+export const boardGrid = style({
+  display: "grid",
+  gap: "1.2rem",
+  width: "100%",
+});
+
+export const cardWrapper = recipe({
+  base: {
+    aspectRatio: "1 / 1",
+    backgroundColor: colors.green,
+    borderRadius: layout.borderRadius.xlarge,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "4.8rem",
+    fontWeight: 700,
+    color: colors.gray000,
+    cursor: "pointer",
+    transition: "transform 0.55s",
+  },
+  variants: {
+    flipped: {
+      true: {
+        transform: "rotateY(180deg)",
+      },
+    },
+    matched: {
+      true: {
+        opacity: 0.6,
+        cursor: "not-allowed",
+      },
+    },
+  },
+});
+
+export const cardText = recipe({
+  base: {
+    transition: "transform 0.55s",
+  },
+  variants: {
+    flipped: {
+      true: {
+        transform: "rotateY(180deg)",
+      },
+    },
+  },
+});
