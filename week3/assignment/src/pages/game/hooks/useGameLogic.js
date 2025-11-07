@@ -64,25 +64,18 @@ export const useGameLogic = (deck, resetDeck, level, timeLimit) => {
     }
   }, [matchedCardsCount, totalPairs]);
 
-  // 게임 종료 시 3초 후 초기화
+  // 게임 종료 시 localStorage 저장
+  // 게임 릿셋은 모달창 버튼 클릭했을 때 실행
   useEffect(() => {
-    if (gameResult === GAME_RESULT.WIN || gameResult === GAME_RESULT.LOSE) {
-      // WIN일 때만 localStorage에 저장
-      if (gameResult === GAME_RESULT.WIN) {
-        const result = {
-          level: level,
-          clearTime: (timeLimit - timeLeft).toFixed(2),
-          recordedAt: new Date().toLocaleString('ko-KR'),
-        };
-        saveGameResult(result);
-      }
-
-      const timeout = setTimeout(() => {
-        handleReset();
-      }, GAME_RESET_DELAY);
-      return () => clearTimeout(timeout);
+    if (gameResult === GAME_RESULT.WIN) {
+      const result = {
+        level: level,
+        clearTime: (timeLimit - timeLeft).toFixed(2),
+        recordedAt: new Date().toLocaleString('ko-KR'),
+      };
+      saveGameResult(result);
     }
-  }, [gameResult, level, timeLeft]);
+  }, [gameResult, level, timeLeft, timeLimit]);
 
   // 게임 상태에 따른 메시지 가져오기
   const getGameMessage = () => {
