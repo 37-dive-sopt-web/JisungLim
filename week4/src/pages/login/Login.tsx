@@ -3,8 +3,16 @@ import * as styles from "./Login.css";
 import { TEXT_FIELD_TYPES } from "@/shared/constants/textField";
 import { Button } from "@/shared/components/Button/Button";
 import { BUTTON_VARIANTS } from "@/shared/constants/button";
+import { useNavigate } from "react-router";
+import { ROUTES } from "@/routes/paths";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSignupClick = () => {
+    navigate(ROUTES.SIGNUP);
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>로그인</h1>
@@ -24,7 +32,9 @@ const Login = () => {
       </div>
 
       <div className={styles.signUpContainer}>
-        <Button variant={BUTTON_VARIANTS.TEXT_MEDIUM}>회원가입</Button>
+        <Button variant={BUTTON_VARIANTS.TEXT_MEDIUM} onClick={handleSignupClick}>
+          회원가입
+        </Button>
       </div>
     </div>
   );
