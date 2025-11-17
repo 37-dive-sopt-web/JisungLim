@@ -25,7 +25,7 @@ const Login = () => {
         <TextField
           type={TEXT_FIELD_TYPES.PASSWORD}
           label="비밀번호"
-          detail="8-64자, 대소문자/숫자/특수문자 1개 이상, 공백X"
+          detail="8~64자, 대소문자/숫자/특수문자 각각 1개 이상 포함, 공백 미허용"
           placeholder="비밀번호를 입력하세요"
         />
         <Button variant={BUTTON_VARIANTS.CONFIRM}>로그인</Button>

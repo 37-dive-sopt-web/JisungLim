@@ -17,22 +17,15 @@ export const title = style({
   textAlign: "start",
 });
 
-export const inputContainer = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: "30px",
-  marginTop: "24px",
-});
-
 export const infoContainer = style({
   display: "flex",
   width: "100%",
   justifyContent: "start",
   marginTop: "6px",
-  gap: "4px",
 });
 
 export const infoText = style({
-  ...typographyVars.body_r_14_underline,
+  ...typographyVars.body_r_14,
   color: colors.gray400,
+  padding: "4px",
 });
