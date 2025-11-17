@@ -1,9 +1,33 @@
+import { TextField } from "@/shared/components/TextField/TextField";
+import * as styles from "./Login.css";
+import { TEXT_FIELD_TYPES } from "@/shared/constants/textField";
+import { Button } from "@/shared/components/Button/Button";
+import { BUTTON_VARIANTS } from "@/shared/constants/button";
+
 const Login = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <div className={styles.container}>
+      <h1 className={styles.title}>로그인</h1>
+      <div className={styles.inputContainer}>
+        <TextField
+          type={TEXT_FIELD_TYPES.ID}
+          label="아이디"
+          placeholder="아이디를 입력하세요"
+        />
+        <TextField
+          type={TEXT_FIELD_TYPES.PASSWORD}
+          label="비밀번호"
+          detail="8-64자, 대소문자/숫자/특수문자 1개 이상, 공백X"
+          placeholder="비밀번호를 입력하세요"
+        />
+        <Button variant={BUTTON_VARIANTS.CONFIRM}>로그인</Button>
+      </div>
 
-export default Login
+      <div className={styles.signUpContainer}>
+        <Button variant={BUTTON_VARIANTS.TEXT_MEDIUM}>회원가입</Button>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

@@ -16,17 +16,13 @@ export const apiClient = ky.create({
   hooks: {
     beforeRequest: [
       (request) => {
-        // TODO: 인증 토큰 필요 시 추가
+        // TODO: 인증 토큰 필요 시 코드 추가
       },
     ],
     afterResponse: [
       async (request, options, response) => {
-        // TODO: 필요 시 추가
-        // 응답 후 처리
-        if (!response.ok) {
-          const error = await response.json().catch(() => ({}));
-          console.error('API Error:', error);
-        }
+        // TODO: 응답 처리 필요 시 코드 추가
+        // 에러 핸들링 코드는 request.ts에 구현
         return response;
       },
     ],
