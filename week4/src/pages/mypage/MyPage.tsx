@@ -1,9 +1,14 @@
+import Header from "@/pages/mypage/components/header/Header";
+import { Outlet } from "react-router";
+
 const MyPage = () => {
   return (
     <div>
-      
-    </div>
-  )
-}
+      <Header />
 
-export default MyPage
+      <Outlet />
+    </div>
+  );
+};
+
+export default MyPage;

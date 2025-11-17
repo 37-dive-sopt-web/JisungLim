@@ -13,6 +13,10 @@ const Login = () => {
     navigate(ROUTES.SIGNUP);
   };
 
+  const handleLoginClick = () => {
+    navigate(ROUTES.MYPAGE);
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>로그인</h1>
@@ -28,11 +32,16 @@ const Login = () => {
           detail="8~64자, 대소문자/숫자/특수문자 각각 1개 이상 포함, 공백 미허용"
           placeholder="비밀번호를 입력하세요"
         />
-        <Button variant={BUTTON_VARIANTS.CONFIRM}>로그인</Button>
+        <Button variant={BUTTON_VARIANTS.CONFIRM} onClick={handleLoginClick}>
+          로그인
+        </Button>
       </div>
 
       <div className={styles.signUpContainer}>
-        <Button variant={BUTTON_VARIANTS.TEXT_MEDIUM} onClick={handleSignupClick}>
+        <Button
+          variant={BUTTON_VARIANTS.TEXT_MEDIUM}
+          onClick={handleSignupClick}
+        >
           회원가입
         </Button>
       </div>
