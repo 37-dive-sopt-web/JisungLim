@@ -16,7 +16,7 @@ export interface RequestConfig {
   method: HTTPMethodType;
   url: string;
   query?: Record<string, QueryValue>;
-  body?: Record<string, unknown>;
+  body?: unknown;
 }
 
 // Error response: { success, code, message, data }

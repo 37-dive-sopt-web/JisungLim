@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
 import { STEPS, type Step } from "@/pages/signup/constants/steps";
+import { signUp } from "@/apis/apis";
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -23,10 +24,22 @@ export const useSignUp = () => {
     setStep(STEPS.INFO);
   };
 
-  const handleInfoSubmit = (name: string, email: string, age: number) => {
-    // TODO: 회원가입 API 호출
-    console.log({ id, password, name, email, age });
-    // navigate(ROUTES.LOGIN);
+  const handleInfoSubmit = async (name: string, email: string, age: number) => {
+    try {
+      const response = await signUp({
+        username: id,
+        password: password,
+        name: name,
+        email: email,
+        age: age,
+      });
+
+      console.log("회원가입 성공:", response);
+      alert(`${response.name}님 회원가입에 성공했습니다!`);
+    } catch (error) {
+      alert(`회원가입 실패: ${error}`);
+    }
+    navigate(ROUTES.LOGIN);
   };
 
   return {
