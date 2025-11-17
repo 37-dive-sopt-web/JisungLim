@@ -4,6 +4,7 @@ import { TEXT_FIELD_TYPES } from "@/shared/constants/textField";
 import { BUTTON_VARIANTS } from "@/shared/constants/button";
 import { useState } from "react";
 import { Button } from "@/shared/components/Button/Button";
+import { Info } from "@/shared/components/Info/Info";
 
 const MyInfo = () => {
   const [name, setName] = useState("");
@@ -40,10 +41,7 @@ const MyInfo = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>내 정보</h2>
-      <div className={styles.idContainer}>
-        <span className={styles.idLeft}>아이디</span>
-        <span className={styles.idRight}>wltjd6300</span>
-      </div>
+      <Info label="아이디" value="wltjd6300" />
       <div className={styles.inputContainer}>
         <TextField
           type={TEXT_FIELD_TYPES.TEXT}
