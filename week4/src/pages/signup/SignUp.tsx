@@ -4,9 +4,9 @@ import { BUTTON_VARIANTS } from "@/shared/constants/button";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
 import { useState } from "react";
-import SignupId from "@/pages/signup/signup-id/SignupId";
-import SignupPassword from "@/pages/signup/signup-password/SignupPassword";
-import SignupInfo from "@/pages/signup/signup-info/SignupInfo";
+import SignupId from "@/pages/signup/components/signup-id/SignupId";
+import SignupPassword from "@/pages/signup/components/signup-password/SignupPassword";
+import SignupInfo from "@/pages/signup/components/signup-info/SignupInfo";
 import { STEPS, type Step } from "@/pages/signup/constants/steps";
 
 const SignUp = () => {
@@ -32,7 +32,7 @@ const SignUp = () => {
   const handleInfoSubmit = (name: string, email: string, age: number) => {
     // TODO: 회원가입 API 호출
     console.log({ id, password, name, email, age });
-    // 성공 시 로그인 페이지로 이동
+    // 성공 시 로그인 페이지로 이동, 실패 시 회원가입 페이지로 이동
     // navigate(ROUTES.LOGIN);
   };
 
