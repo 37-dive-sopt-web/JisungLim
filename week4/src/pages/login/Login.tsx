@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
 import { login } from "@/apis/apis";
 import { useState } from "react";
+import { saveUserId } from "@/shared/utils/auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Login = () => {
       });
 
       console.log("로그인 성공:", response);
+      saveUserId(response.userId); // localStorage에 userId 저장
       alert(`${response.message}`);
       navigate(ROUTES.MYPAGE);
     } catch (error) {
