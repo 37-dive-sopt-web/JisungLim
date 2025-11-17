@@ -4,13 +4,14 @@ import { BUTTON_VARIANTS } from "@/shared/constants/button";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
 import { useState } from "react";
-import SignupId from "@/pages/signup/signup-id/SignUpId";
+import SignupId from "@/pages/signup/signup-id/SignupId";
 import SignupPassword from "@/pages/signup/signup-password/SignupPassword";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [isIdVerified, setIsIdVerified] = useState(false);
   const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleReturnClick = () => {
     navigate(ROUTES.LOGIN);
@@ -22,17 +23,17 @@ const SignUp = () => {
   };
 
   const handlePasswordClick = (password: string) => {
-    
-  }
+    setPassword(password);
+  };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>회원가입</h1>
       <div>
         {!isIdVerified ? (
-          <SignupId onClick={handleIdClick}/>
+          <SignupId onClick={handleIdClick} />
         ) : (
-          <SignupPassword onClick={handlePasswordClick}/>
+          <SignupPassword onClick={handlePasswordClick} />
         )}
       </div>
       <p className={styles.infoContainer}>
