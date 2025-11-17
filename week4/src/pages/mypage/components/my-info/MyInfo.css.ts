@@ -15,6 +15,7 @@ export const idContainer = style({
   display: "flex",
   flex: 1, // 부모 너비 다 차지
   justifyContent: "space-between",
+  marginTop: '20px',
 });
 
 export const idLeft = style({
@@ -23,7 +24,7 @@ export const idLeft = style({
 });
 
 export const idRight = style({
-  ...typographyVars.heading_sb_22,
+  ...typographyVars.title_sb_16,
   color: colors.gray000,
 });
 
