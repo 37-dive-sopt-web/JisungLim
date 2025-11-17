@@ -19,6 +19,14 @@ export interface RequestConfig {
   body?: unknown;
 }
 
+// Success response: { success, code, message, data }
+interface SuccessResponse<T> {
+  success: true;
+  code: string;
+  message: string;
+  data: T;
+}
+
 // Error response: { success, code, message, data }
 interface ErrorResponse {
   success: false;
@@ -45,9 +53,9 @@ export const request = async <T>(config: RequestConfig): Promise<T> => {
       method,
       searchParams: query as Record<string, string | number | boolean>,
       json: body,
-    }).json<T>(); 
+    }).json<SuccessResponse<T>>();
 
-    return response; // 성공 시 정의해둔 T(응답 Data Type)대로 바로 반환
+    return response.data; // 성공 시 data 필드만 추출해서 반환
   } catch (error: unknown) {
     if (error instanceof HTTPError) {
       const errorData = await error.response
