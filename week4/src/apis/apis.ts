@@ -30,3 +30,10 @@ export const getUserById = async (id: number): Promise<GetUserResponse> => {
     url: API_ENDPOINT.GET_PROFILE(id),
   });
 };
+
+export const deleteAccount = async (id: number): Promise<void> => {
+  return request<void>({
+    method: HTTPMethod.DELETE,
+    url: API_ENDPOINT.DELETE_ACCOUNT(id),
+  });
+};

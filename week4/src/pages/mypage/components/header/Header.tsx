@@ -3,6 +3,7 @@ import * as styles from "./Header.css";
 import { BUTTON_VARIANTS } from "@/shared/constants/button";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
+import { deleteAccount } from "@/apis/apis";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,6 +12,23 @@ const Header = () => {
   };
   const handleMemberClick = () => {
     navigate(ROUTES.MYPAGE_MEMBER);
+  };
+
+  const handleDeleteAccount = async () => {
+    const confirmed = window.confirm("정말로 회원 탈퇴하시겠습니까?");
+
+    if (!confirmed) return;
+
+    try {
+      // TODO: localstorage에서 값 가져오기
+      const userId = 1;
+      await deleteAccount(userId);
+      alert("회원 탈퇴가 완료되었습니다.");
+      navigate(ROUTES.LOGIN);
+    } catch (error) {
+      console.error("회원 탈퇴 실패:", error);
+      alert("회원 탈퇴에 실패했습니다.");
+    }
   };
 
   return (
@@ -28,7 +46,9 @@ const Header = () => {
           회원 조회
         </Button>
         <Button variant={BUTTON_VARIANTS.DEFAULT}>로그아웃</Button>
-        <Button variant={BUTTON_VARIANTS.DEFAULT}>회원탈퇴</Button>
+        <Button variant={BUTTON_VARIANTS.DEFAULT} onClick={handleDeleteAccount}>
+          회원탈퇴
+        </Button>
       </div>
     </div>
   );
