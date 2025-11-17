@@ -35,6 +35,7 @@ interface ErrorResponse {
   };
 }
 
+// ky 인스턴스 래퍼 함수
 export const request = async <T>(config: RequestConfig): Promise<T> => {
   // T: 응답 성공 시 받는 데이터의 타입 
   const { method, url, query, body } = config;
