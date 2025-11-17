@@ -3,11 +3,33 @@ import * as styles from "./Header.css";
 import { BUTTON_VARIANTS } from "@/shared/constants/button";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
-import { deleteAccount } from "@/apis/apis";
+import { deleteAccount, getUserById } from "@/apis/apis";
 import { getUserId, clearUserId } from "@/shared/utils/auth";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = getUserId();
+        if (!userId) {
+          navigate(ROUTES.LOGIN);
+          return;
+        }
+
+        const userData = await getUserById(userId);
+        setUserName(userData.name);
+      } catch (error) {
+        console.error("사용자 정보 조회 실패:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
+
   const handleMyInfoClick = () => {
     navigate(ROUTES.MYPAGE_INFO);
   };
@@ -50,7 +72,9 @@ const Header = () => {
     <div className={styles.container}>
       <div>
         <h1 className={styles.title}>마이페이지</h1>
-        <p className={styles.subtitle}>안녕하세요, 임지성님</p>
+        <p className={styles.subtitle}>
+          안녕하세요, {userName}님
+        </p>
       </div>
 
       <div className={styles.tabContainer}>
