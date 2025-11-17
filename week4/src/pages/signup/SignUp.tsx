@@ -6,10 +6,12 @@ import { ROUTES } from "@/routes/paths";
 import { useState } from "react";
 import SignupId from "@/pages/signup/signup-id/SignupId";
 import SignupPassword from "@/pages/signup/signup-password/SignupPassword";
+import SignupInfo from "@/pages/signup/signup-info/SignupInfo";
+import { STEPS, type Step } from "@/pages/signup/constants/steps";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [isIdVerified, setIsIdVerified] = useState(false);
+  const [step, setStep] = useState<Step>(STEPS.ID);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,25 +19,40 @@ const SignUp = () => {
     navigate(ROUTES.LOGIN);
   };
 
-  const handleIdClick = (id: string) => {
-    setIsIdVerified(true);
+  const handleIdSubmit = (id: string) => {
     setId(id);
+    setStep(STEPS.PASSWORD);
   };
 
-  const handlePasswordClick = (password: string) => {
+  const handlePasswordSubmit = (password: string) => {
     setPassword(password);
+    setStep(STEPS.INFO);
+  };
+
+  const handleInfoSubmit = (name: string, email: string, age: number) => {
+    // TODO: 회원가입 API 호출
+    console.log({ id, password, name, email, age });
+    // 성공 시 로그인 페이지로 이동
+    // navigate(ROUTES.LOGIN);
+  };
+
+  const renderStep = () => {
+    switch (step) {
+      case STEPS.ID:
+        return <SignupId onClick={handleIdSubmit} />;
+      case STEPS.PASSWORD:
+        return <SignupPassword onClick={handlePasswordSubmit} />;
+      case STEPS.INFO:
+        return <SignupInfo onClick={handleInfoSubmit} />;
+      default:
+        return <SignupId onClick={handleIdSubmit} />;
+    }
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>회원가입</h1>
-      <div>
-        {!isIdVerified ? (
-          <SignupId onClick={handleIdClick} />
-        ) : (
-          <SignupPassword onClick={handlePasswordClick} />
-        )}
-      </div>
+      <div>{renderStep()}</div>
       <p className={styles.infoContainer}>
         <span className={styles.infoText}>이미 계정이 있나요?</span>
         <Button
