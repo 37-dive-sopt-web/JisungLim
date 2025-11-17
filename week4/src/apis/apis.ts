@@ -6,7 +6,11 @@ import type {
   SignUpRequest,
   SignUpResponse,
 } from "./types/auth.types";
-import type { GetUserResponse } from "./types/user.types";
+import type {
+  GetUserResponse,
+  UpdateUserRequest,
+  UpdateUserResponse,
+} from "./types/user.types";
 
 export const signUp = async (data: SignUpRequest): Promise<SignUpResponse> => {
   return request<SignUpResponse>({
@@ -28,6 +32,17 @@ export const getUserById = async (id: number): Promise<GetUserResponse> => {
   return request<GetUserResponse>({
     method: HTTPMethod.GET,
     url: API_ENDPOINT.GET_PROFILE(id),
+  });
+};
+
+export const updateProfile = async (
+  id: number,
+  data: UpdateUserRequest
+): Promise<UpdateUserResponse> => {
+  return request<UpdateUserResponse>({
+    method: HTTPMethod.PATCH,
+    url: API_ENDPOINT.UPDATE_PROFILE(id),
+    body: data,
   });
 };
 

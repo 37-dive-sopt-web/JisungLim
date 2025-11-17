@@ -5,7 +5,7 @@ import { BUTTON_VARIANTS } from "@/shared/constants/button";
 import { useState, useEffect } from "react";
 import { Button } from "@/shared/components/Button/Button";
 import { Info } from "@/shared/components/Info/Info";
-import { getUserById } from "@/apis/apis";
+import { getUserById, updateProfile } from "@/apis/apis";
 import { getUserId } from "@/shared/utils/auth";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/routes/paths";
@@ -60,9 +60,32 @@ const MyInfo = () => {
     );
   };
 
-  const handleSubmit = () => {
-    if (isFormValid()) {
-      //
+  const handleSubmit = async () => {
+    if (!isFormValid()) return;
+
+    try {
+      const userId = getUserId();
+      if (!userId) {
+        alert("userId를 찾을 수 없습니다.");
+        navigate(ROUTES.LOGIN);
+        return;
+      }
+
+      const response = await updateProfile(userId, {
+        name,
+        email,
+        age: Number(age),
+      });
+
+      console.log("개인정보 수정 성공:", response);
+      setUsername(response.username);
+      setName(response.name);
+      setEmail(response.email);
+      setAge(response.age.toString());
+      alert("개인정보가 성공적으로 수정되었습니다.");
+    } catch (error) {
+      console.error("개인정보 수정 실패:", error);
+      alert("개인정보 수정에 실패했습니다.");
     }
   };
 

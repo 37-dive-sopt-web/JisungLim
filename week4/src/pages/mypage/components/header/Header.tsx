@@ -53,7 +53,7 @@ const Header = () => {
     try {
       const userId = getUserId(); // localStorage에서 가져옴
       if (!userId) {
-        alert("로그인 정보를 찾을 수 없습니다.");
+        alert("userId를 찾을 수 없스비다.");
         navigate(ROUTES.LOGIN);
         return;
       }
