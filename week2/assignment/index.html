@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <span class="header-icon">🫡</span>
+      <h1 class="header-title">웹계인 관리 페이지</h1>
+      <span class="header-detail">DIVE SOPT 37기 OB 임지성</span>
+    </header>
+
+    <!-- 검색 필터 -->
+    <main class="filter-container">
+      <h2 class="filter-title">검색 필터</h2>
+      <form action="" class="filter-form">
+        <div class="filter-grid">
+          <div class="filter-item">
+            <label for="filter-name" class="filter-label">이름</label>
+            <input
+              type="text"
+              id="filter-name"
+              placeholder="이름을 입력하세요"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <label for="filter-english-name" class="filter-label"
+              >영문이름</label
+            >
+            <input
+              type="text"
+              id="filter-english-name"
+              placeholder="영문 이름을 입력하세요"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <label for="filter-github" class="filter-label">깃허브</label>
+            <input
+              type="text"
+              id="filter-github"
+              placeholder="깃허브 아이디를 입력하세요"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-item">
+            <label for="filter-gender" class="filter-label">성별</label>
+            <select name="gender" id="filter-gender" class="filter-select">
+              <option value="">전체</option>
+              <option value="male">남자</option>
+              <option value="female">여자</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <label for="filter-role" class="filter-label">역할</label>
+            <select name="role" id="filter-role" class="filter-select">
+              <option value="">전체</option>
+              <option value="OB">OB</option>
+              <option value="YB">YB</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <label for="filter-team" class="filter-label">금잔디조</label>
+            <input
+              type="number"
+              id="filter-team"
+              placeholder="금잔디조를 입력하세요 (1~9)"
+              class="filter-input"
+              min="1"
+              max="9"
+            />
+          </div>
+
+          <div class="filter-item">
+            <label for="filter-age" class="filter-label">나이</label>
+            <input
+              type="number"
+              id="filter-age"
+              placeholder="나이를 입력하세요"
+              class="filter-input"
+            />
+          </div>
+        </div>
+
+        <div class="filter-button-container">
+          <button type="submit" class="filter-button">적용</button>
+          <button type="reset" class="filter-button">초기화</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- 검색 결과 -->
+    <section class="member-list-container">
+      <h2 class="member-list-title">37기 웹 파트원 목록</h2>
+
+      <div class="list-modify-button-container">
+        <!-- 선택 삭제 / 추가 버튼 -->
+        <button type="button" class="list-modify-button list-delete-button">
+          선택 삭제
+        </button>
+        <button type="button" class="list-modify-button list-add-button">
+          추가
+        </button>
+      </div>
+
+      <table class="table">
+        <colgroup>
+          <!-- colgroup에서 너비 설정은 inline style로 정의가 효율적일 듯함 -->
+          <!-- css 별도 분리 시 :nth-child로 코드가 복잡해짐 -->
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+          <col style="width: 20%" />
+          <col style="width: 20%" />
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+          <col style="width: 10%" />
+        </colgroup>
+        <thead>
+          <tr class="table-header-row">
+            <th class="table-header">
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                class="table-header-checkbox"
+              />
+            </th>
+            <th class="table-header">이름</th>
+            <th class="table-header">영문 이름</th>
+            <th class="table-header">깃허브</th>
+            <th class="table-header">성별</th>
+            <th class="table-header">역할</th>
+            <th class="table-header">금잔디조</th>
+            <th class="table-header">나이</th>
+          </tr>
+        </thead>
+        <tbody class="table-body"></tbody>
+      </table>
+    </section>
+
+    <!-- 모달창 -->
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <div class="modal-header-container">
+          <h2 class="modal-header">멤버 추가</h2>
+          <button type="button" class="close-modal-button" aria-label="닫기">X</button>
+        </div>
+
+        <form class="modal-input-container">
+          <div class="modal-input-box">
+            <label for="member-name" class="modal-input-label">이름</label>
+            <input
+              type="text"
+              id="member-name"
+              class="modal-input"
+              placeholder="이름을 입력해주세요"
+            />
+          </div>
+          <div class="modal-input-box">
+            <label for="member-english-name" class="modal-input-label"
+              >영문 이름</label
+            >
+            <input
+              type="text"
+              id="member-english-name"
+              class="modal-input"
+              placeholder="영문 이름을 입력해주세요"
+            />
+          </div>
+          <div class="modal-input-box">
+            <label for="member-github" class="modal-input-label"
+              >깃허브 아이디</label
+            >
+            <input
+              type="text"
+              id="member-github"
+              class="modal-input"
+              placeholder="깃허브 아이디를 입력해주세요"
+            />
+          </div>
+          <div class="input-box-wrapper">
+            <div class="modal-input-box">
+              <label for="member-gender" class="modal-input-label">성별</label>
+              <select name="gender" id="member-gender" class="modal-select">
+                <option value="">선택</option>
+                <option value="male">남자</option>
+                <option value="female">여자</option>
+              </select>
+            </div>
+            <div class="modal-input-box">
+              <label for="member-role" class="modal-input-label">역할</label>
+              <select name="role" id="member-role" class="modal-select">
+                <option value="">선택</option>
+                <option value="OB">OB</option>
+                <option value="YB">YB</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-box-wrapper">
+            <div class="modal-input-box">
+              <label for="member-team" class="modal-input-label"
+                >금잔디조</label
+              >
+              <input
+                type="number"
+                id="member-team"
+                class="modal-input"
+                placeholder="금잔디조를 입력해주세요"
+                min="1"
+                max="9"
+              />
+            </div>
+            <div class="modal-input-box">
+              <label for="member-age" class="modal-input-label">나이</label>
+              <input
+                type="number"
+                id="member-age"
+                class="modal-input"
+                placeholder="나이를 입력해주세요"
+              />
+            </div>
+          </div>
+        </form>
+
+        <div class="modal-button-container">
+          <button type="button" class="modal-add-member-button">추가</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./members.js"></script>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
