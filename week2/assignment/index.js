@@ -28,6 +28,13 @@ headerCheckbox.addEventListener("change", (event) => {
   checkBoxes.forEach((box) => (box.checked = isChecked));
 });
 
+// 개별 체크박스 상태에 따라 헤더 체크박스 동기화
+function updateHeaderCheckbox() {
+  const checkBoxes = document.querySelectorAll(".table-checkbox");
+  const allChecked = checkBoxes.length > 0 && [...checkBoxes].every((box) => box.checked);
+  headerCheckbox.checked = allChecked;
+}
+
 // 모달창
 const openModalBtn = document.querySelector(".list-add-button"); // 모달창 열기
 const closeModalBtn = document.querySelector(".close-modal-button"); // 모달창 닫기
@@ -111,6 +118,7 @@ function refreshMemberList(data) {
     checkbox.type = "checkbox";
     checkbox.classList.add("table-checkbox");
     checkbox.id = member.id;
+    checkbox.addEventListener("change", updateHeaderCheckbox);
     checkboxTd.appendChild(checkbox);
     tr.appendChild(checkboxTd);
 
